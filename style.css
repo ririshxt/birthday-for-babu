@@ -1,0 +1,152 @@
+:root { --pink: #ff4d7d; --ink: #5a2a3c; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  font-family: "Poppins", system-ui, sans-serif;
+  background: linear-gradient(160deg, #ffd6e0, #ffb3c6 50%, #e0b3ff);
+  background-attachment: fixed;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+.hidden { display: none !important; }
+
+.screen {
+  display: none;
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  padding: 24px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 18px;
+}
+.screen.active { display: flex; animation: fade .7s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+h1 { font-size: 2.2rem; line-height: 1.2; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.1rem; }
+.script { font-family: "Dancing Script", cursive; font-size: 2.8rem; }
+p { font-size: 1.05rem; line-height: 1.6; max-width: 480px; }
+small { opacity: .75; }
+
+button {
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(255, 77, 125, .35);
+  transition: transform .15s;
+}
+button:hover { transform: scale(1.05); }
+button:disabled { opacity: .4; cursor: default; transform: none; }
+button.ghost { background: #fff; color: var(--pink); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+
+.row { display: flex; gap: 12px; }
+.stack { display: flex; flex-direction: column; gap: 10px; width: min(360px, 90vw); }
+
+input {
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  font: inherit;
+  text-align: center;
+  outline: none;
+  width: min(280px, 80vw);
+}
+.shake { animation: shake .4s; }
+@keyframes shake { 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+.bounce { font-size: 4rem; animation: bounce 1.2s infinite; }
+@keyframes bounce { 50% { transform: translateY(-14px); } }
+
+/* hearts + confetti */
+#hearts { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.heart { position: absolute; bottom: -40px; animation: rise linear forwards; }
+@keyframes rise { to { transform: translateY(-115vh) rotate(25deg); opacity: 0; } }
+#confetti { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+.pop { position: fixed; pointer-events: none; z-index: 60; font-size: 20px; animation: pop .9s ease-out forwards; }
+@keyframes pop { to { transform: translate(var(--dx), var(--dy)) scale(.4); opacity: 0; } }
+
+#musicBtn { position: fixed; top: 14px; right: 14px; z-index: 40; padding: 10px 14px; }
+
+/* cake */
+.cake { position: relative; width: 220px; height: 200px; margin-top: 30px; }
+.layer { position: absolute; left: 50%; transform: translateX(-50%); border-radius: 10px; }
+.l1 { bottom: 0; width: 220px; height: 70px; background: #ff8fab; }
+.l2 { bottom: 70px; width: 160px; height: 60px; background: #ffc2d1; }
+.drip { position: absolute; bottom: 122px; left: 50%; transform: translateX(-50%); width: 160px; height: 10px; background: #fff; border-radius: 10px; }
+.candles { position: absolute; bottom: 130px; left: 50%; transform: translateX(-50%); display: flex; gap: 22px; }
+.candle { position: relative; width: 12px; height: 40px; background: #ffe066; border-radius: 3px; cursor: pointer; }
+.flame {
+  position: absolute; top: -22px; left: -1px; width: 14px; height: 20px;
+  background: radial-gradient(circle at 50% 70%, #fff3b0, #ff9f1c);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker .3s infinite alternate;
+}
+@keyframes flicker { to { transform: scale(1.12) rotate(4deg); } }
+.smoke { position: absolute; top: -26px; left: 2px; opacity: .6; animation: rise 2s forwards; }
+
+/* envelope + letter */
+.envelope { position: relative; width: 260px; height: 170px; cursor: pointer; }
+.env-body { position: absolute; inset: 0; background: #ff8fab; border-radius: 10px; }
+.env-flap {
+  position: absolute; top: 0; left: 0; width: 0; height: 0;
+  border-left: 130px solid transparent; border-right: 130px solid transparent;
+  border-top: 95px solid #ff6b95;
+  transform-origin: top; transition: transform .6s;
+}
+.envelope.open .env-flap { transform: rotateX(180deg); }
+.paper {
+  background: #fffaf3; padding: 24px; border-radius: 12px;
+  max-width: 480px; max-height: 60vh; overflow-y: auto;
+  text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+.paper p { margin-bottom: 14px; max-width: none; animation: fade .8s ease; }
+
+/* photos */
+.polaroid {
+  width: min(320px, 85vw); background: #fff; padding: 12px 12px 18px;
+  border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.2); transform: rotate(-2deg);
+}
+.polaroid img { width: 100%; height: 320px; object-fit: cover; border-radius: 4px; display: block; background: #eee; }
+.polaroid.swap { animation: fade .5s ease; }
+#caption { margin-top: 10px; }
+
+/* counter */
+.counter { display: flex; gap: 10px; }
+.counter div {
+  background: #fff; border-radius: 14px; padding: 14px 10px; min-width: 70px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.1);
+}
+.counter b { display: block; font-size: 1.7rem; color: var(--pink); }
+.counter span { font-size: .75rem; opacity: .7; }
+
+/* reasons */
+.card {
+  background: #fff; border-radius: 16px; padding: 24px; min-height: 110px; width: min(360px, 90vw);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12); font-size: 1.1rem;
+}
+.card.swap { animation: fade .5s ease; }
+
+/* scratch */
+.scratch-wrap { position: relative; width: 300px; height: 150px; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+.scratch-text {
+  position: absolute; inset: 0; background: #fffaf3; display: flex;
+  align-items: center; justify-content: center; padding: 16px; font-weight: 500;
+}
+#scratchCanvas { position: absolute; inset: 0; touch-action: none; cursor: crosshair; }
+
+/* final */
+.final { display: flex; flex-direction: column; align-items: center; gap: 16px; animation: fade .7s ease; }
+.voucher { background: #fff; color: var(--ink); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+.voucher.done { background: #d8f5e3; text-decoration: line-through; }
+.sign { font-family: "Dancing Script", cursive; font-size: 1.7rem; }

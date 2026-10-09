@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="hearts"></div>
+<canvas id="confetti"></canvas>
+<button id="musicBtn" class="hidden">🔇</button>
+<audio id="music" loop></audio>
+
+<!-- LOCK -->
+<section class="screen active" id="lock">
+  <h1 id="lockTitle"></h1>
+  <p>Enter the secret word to open your gift.</p>
+  <input id="pass" placeholder="Secret word" autocomplete="off">
+  <button id="unlockBtn">Unlock</button>
+  <small id="hint"></small>
+</section>
+
+<!-- INTRO -->
+<section class="screen" id="intro">
+  <div class="bounce">🎁</div>
+  <h1 id="introTitle"></h1>
+  <p>Something is waiting for you. Tap to open it.</p>
+  <button data-next="greeting">Open</button>
+</section>
+
+<!-- GREETING -->
+<section class="screen" id="greeting">
+  <h1 id="typed" class="script"></h1>
+  <p id="subtitle" class="hidden"></p>
+  <button id="greetNext" class="hidden" data-next="cake">Next 💗</button>
+</section>
+
+<!-- CAKE -->
+<section class="screen" id="cake">
+  <h2>Make a wish</h2>
+  <p id="cakeHint">Tap each candle to blow it out</p>
+  <div class="cake">
+    <div class="layer l1"></div>
+    <div class="layer l2"></div>
+    <div class="drip"></div>
+    <div class="candles" id="candles"></div>
+  </div>
+  <button id="cakeNext" class="hidden" data-next="letter">Next 💗</button>
+</section>
+
+<!-- LETTER -->
+<section class="screen" id="letter">
+  <h2>A letter for you</h2>
+  <div class="envelope" id="envelope">
+    <div class="env-body"></div>
+    <div class="env-flap"></div>
+  </div>
+  <p id="envHint">Tap the envelope</p>
+  <div class="paper hidden" id="paper"></div>
+  <button id="letterNext" class="hidden" data-next="photos">Next 💗</button>
+</section>
+
+<!-- PHOTOS -->
+<section class="screen" id="photos">
+  <h2>Our memories</h2>
+  <div class="polaroid" id="polaroid">
+    <img id="photo" alt="memory">
+    <div id="caption"></div>
+  </div>
+  <small id="photoCount"></small>
+  <div class="row">
+    <button id="prevPhoto">Back</button>
+    <button id="nextPhoto">Next photo</button>
+  </div>
+  <button id="photoNext" class="hidden" data-next="counter">Continue 💗</button>
+</section>
+
+<!-- COUNTER -->
+<section class="screen" id="counter">
+  <h2>Time I've loved you</h2>
+  <div class="counter">
+    <div><b id="cd">0</b><span>days</span></div>
+    <div><b id="ch">0</b><span>hours</span></div>
+    <div><b id="cm">0</b><span>mins</span></div>
+    <div><b id="cs">0</b><span>secs</span></div>
+  </div>
+  <p>And I'd choose you for every one of them.</p>
+  <button data-next="reasons">Continue 💗</button>
+</section>
+
+<!-- REASONS -->
+<section class="screen" id="reasons">
+  <h2>Reasons I love you</h2>
+  <div class="card" id="reason">Tap the button below</div>
+  <small id="reasonCount"></small>
+  <button id="reasonBtn">Show a reason</button>
+  <button id="reasonNext" class="hidden" data-next="scratch">Continue 💗</button>
+</section>
+
+<!-- SCRATCH -->
+<section class="screen" id="scratch">
+  <h2>Scratch to reveal</h2>
+  <div class="scratch-wrap">
+    <div class="scratch-text" id="scratchText"></div>
+    <canvas id="scratchCanvas" width="300" height="150"></canvas>
+  </div>
+  <button id="scratchNext" class="hidden" data-next="final">Continue 💗</button>
+</section>
+
+<!-- FINAL -->
+<section class="screen" id="final">
+  <div id="finalStart">
+    <h2>One last thing...</h2>
+    <br>
+    <button id="surpriseBtn">Open your surprise 🎉</button>
+  </div>
+  <div id="finalBox" class="hidden final">
+    <h1 id="finalTitle" class="script"></h1>
+    <p id="finalText"></p>
+    <h3>Your gifts, tap to redeem</h3>
+    <div class="stack" id="vouchers"></div>
+    <p class="sign" id="sign"></p>
+    <button class="ghost" id="replay">Watch again</button>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
